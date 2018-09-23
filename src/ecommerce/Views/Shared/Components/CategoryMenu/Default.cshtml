@@ -1,0 +1,9 @@
+﻿<div class="list-group down2">
+    @foreach (var category in Model)
+    {
+        <a class="list-group-item" asp-controller="Product"
+           asp-action="List" asp-route-category="@category.CategoryName">@category.CategoryName</a>
+    }
+    <a class="list-group-item" asp-controller="Product"
+           asp-action="List" asp-route-category="">View All Products</a>
+</div>

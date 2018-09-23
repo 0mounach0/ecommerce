@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+@model Product
+@inject SignInManager<IdentityUser> SignInManager
+
+<div class="col-sm-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@Model.ImageThumbnailUrl" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="fa-pull-right">@Model.Price.ToString("c")</h4>
+                            <h5 class="card-title">
+                                <a asp-controller="Product" asp-action="Details" asp-route-productid="@Model.ProductId">
+                                    @Model.Name
+                                </a>
+                            </h5>
+                            <p class="card-text">@Model.ShortDescription</p>
+                            <div class="text-right">
+                                <p class="button">
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <a asp-controller="Product" 
+                                           asp-action="Details" asp-route-productid="@Model.ProductId"
+                                            class="btn btn-primary">
+                                            Show Details</a>
+
+                                        <a class="btn btn-success" id="cartButton"
+                                           asp-controller="ShoppingCart"
+                                           asp-action="AddToShoppingCart"
+                                           asp-route-productId="@Model.ProductId">
+                                            Add To Cart
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Product"
+                                           asp-action="Details" asp-route-productid="@Model.ProductId"
+                                           class="btn btn-primary">
+                                            Show Details
+                                        </a>
+
+
+                                        <a class="btn btn-success" id="cartButton"
+                                           asp-controller="Account"
+                                           asp-action="Login">
+                                            Add To Cart
+                                        </a>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,68 @@
+﻿body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar-offcanvas {
+    width: 50%; 
+    margin-top: 90px;
+  }
+
+.col-sm-4 .card {
+    margin: 10px;
+    height: 400px;
+}
+
+#carouselExampleIndicators {
+    margin-top: 50px;
+}
+
+.down1 {
+    margin-top: 80px;
+}
+
+.Checkout {
+    margin-right: 5px;
+}
+
+.h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fa-shopping-cart {
+    font-size: 30px;
+}
+
+.ShoppingCart {
+    margin-right: 10px;
+}
+
+.card-block {
+    padding: 20px;
+}
+
+.bottom1 {
+    margin-bottom: 30px;
+}
+
+.down2 {
+    margin-top: 30px;
+}
+
+.Search {
+    margin-right: 30px;
+}
+
+.footer {
+  margin-top: 150px;
+}
+
+.left1 {
+    text-align: right;
+}
+
+.card-img-top {
+    height: 200px; 
+    width: 285px;
+}

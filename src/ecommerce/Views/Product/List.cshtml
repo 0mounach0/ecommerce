@@ -1,0 +1,24 @@
+﻿<div class="container-fluid down1">
+    <div class="row">
+        <div class="col-3 sidebar-offcanvas" id="sidebar">
+            @await Component.InvokeAsync("CategoryMenu")
+        </div>
+
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12">
+                    <h2>All products as shown here</h2>
+                    <h4>@Model.CurrentCategory</h4>
+                </div>
+            </div>
+            <div class="row r1">
+                @foreach (Product p in Model.Products)
+            {
+
+                    @Html.Partial("ProductsSummary", p);
+
+            }
+            </div>
+        </div>
+    </div>
+</div>

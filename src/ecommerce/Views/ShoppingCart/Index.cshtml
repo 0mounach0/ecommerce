@@ -1,0 +1,75 @@
+﻿@model ShoppingCartViewModel
+<div class="container down1">
+    <div class="row checkoutForm">
+
+        <div>
+            <div class="h2">Your shopping cart</div>
+            <div class="h4">Here are the products in your shopping cart.</div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Selected amount</th>
+                    <th>Product</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                    <tr>
+                        <td class="text-center">@line.Amount</td>
+                        <td class="text-left">@line.Product.Name</td>
+                        <td class="text-right">@line.Product.Price.ToString("c")</td>
+                        <td class="text-right">
+                            @((line.Amount * line.Product.Price).ToString("c"))
+                        </td>
+                        <td class="text-center"><a class="" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-productId="@line.Product.ProductId">
+                                                    <i class="fas fa-times"></i>
+                                                   </a></td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model.ShoppingCartTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+       
+            <div class="btn-group">
+                <div class="Checkout">
+                    @if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
+                    {
+                        <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-success disabled" asp-controller="Order" asp-action="Checkout">Check out</a>
+                    }
+
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add more Products
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Pc">Pc</a>
+                        <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Phone">Phone</a>
+                        <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Tablet">Tablet</a>
+                        <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Television">Television</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="">All products</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

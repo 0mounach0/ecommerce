@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+    <link href="~/lib/Font-Awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/popper.js/dist/umd/popper.js"></script>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand"  asp-controller="Home" asp-action="Index">Mounach Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link"  asp-controller="Home" asp-action="Index"> Home </a></li>
+                    
+                    <!---->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Pc">Pc</a>
+                            <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Phone">Phone</a>
+                            <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Tablet">Tablet</a>
+                            <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Television">Television</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="">All products</a>
+                        </div>
+                    </li>
+                    <!---->
+                    <li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="Index"> Contact Us </a></li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 Search" asp-controller="Product" asp-action="Search" method="get">
+                    <input type="text" class="form-control mr-sm-2" placeholder="Search for a product" name="searchString" value="@ViewData["searchString"]">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                @await Component.InvokeAsync("ShoppingCartSummary")
+                @await Html.PartialAsync("LoginPartial")
+            </div>
+        </nav>
+    </header>
+    
+        <div>
+                    @RenderBody()
+            
+            
+        </div>
+    
+    <footer class="container footer">
+        <hr />
+        <p><a target="_blank" href="http://mounach.com">&copy; 2018 - Mounach Mouad</a></p>
+    </footer>
+   
+</body>
+</html>
